@@ -28,12 +28,33 @@ struct hangman{
 		}
 	}
 
+	//void checkLetter(char str) {
+	//	bool flag = false;
+	//	for (size_t i = 0; i < wordGuessed.length(); i++) {
+	//		if (str == word[i]) {
+	//			wordGuessed[i] = word[i];
+	//			flag = true;
+	//		}
+	//	}
+	//	if (flag == false) {
+
+	//	}
+	//}
+
+	void choseDif() {
+		char temp;
+	}
+
 		string* wordPtr = &word;
 
 private:
 	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
+	vector<int> dif = /*NUMBER OF DIFFICULTIES AND LIVES PER DIFFICULTY*/{ 9,7,5,3,1 };
+	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/ { "Easy", "Standard", "Hard", "Insane", "Perfect" };
+
 	string word = pickStr();
 	string wordGuessed = word;
+	int lives;
 };
 
 int main()

@@ -4,6 +4,14 @@
 #include <ctime>
 using namespace std;
 
-int main() {
+struct hangman{
+private:
+	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
+	string word;
+	string wordGuessed = word;
+};
 
+int main()
+{
+	hangman game;
 }

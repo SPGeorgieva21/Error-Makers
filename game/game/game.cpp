@@ -2,6 +2,12 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 using namespace std;
 
 struct hangman{
@@ -40,6 +46,13 @@ struct hangman{
 
 	//	}
 	//}
+
+	void typePrint(string str, int time /*SECONDS*/) {
+		for (size_t i = 0; i < str.size(); i++) {
+			cout << str[i];
+			Sleep((time * 1000) / str.size());
+		}
+	}
 
 	void choseDif() {
 		char temp;

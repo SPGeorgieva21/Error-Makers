@@ -22,6 +22,13 @@ struct hangman{
 		}
 	}
 
+	void printWordGuessed() {
+		for (size_t i = 0; i < wordGuessed.length(); i++) {
+			cout << wordGuessed[i];
+		}
+	}
+
+		string* wordPtr = &word;
 
 private:
 	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
@@ -33,4 +40,5 @@ int main()
 {
 	hangman game;
 	game.clearWordGuessed();
+	game.printWordGuessed();
 }

@@ -7,10 +7,12 @@
 #else
 #include <unistd.h>
 #endif
+#include <string>
 
 using namespace std;
 
-struct hangman{
+
+struct hangman {
 	string pickStr() {
 		srand(time(0));
 		int temp = rand() % wordlist.size();
@@ -55,24 +57,45 @@ struct hangman{
 	}
 
 	void choseDif() {
-		char temp;
+		int temp;
+		typePrint("Please chose one of the following difficulties:", 1);
+		Sleep(300);
+		cout << '\n';
+		for (size_t i = 0; i < dif.size(); i++) {
+			//string livesHearts = "";
+			//for (int j = 0; j < dif[i]; j++) {
+			//	livesHearts += "";
+			//}
+			cout << difName[i] << " (" << i+1 << "): " << dif[i] << " lives" << '\n';
+		}
+		Sleep(500);
+		typePrint("Which difficulty do you chose? (1-" + to_string(dif.size() + 1) + "): ", 1);
+		cin >> temp;
+		difficulty = temp;
+		lives = dif[temp];
+		for (size_t i = 0; i < dif.size(); i++) {
+
+		}
 	}
 
-		string* wordPtr = &word;
+	string* wordPtr = &word;
 
 private:
 	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
 	vector<int> dif = /*NUMBER OF DIFFICULTIES AND LIVES PER DIFFICULTY*/{ 9,7,5,3,1 };
-	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/ { "Easy", "Standard", "Hard", "Insane", "Perfect" };
+	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/{ "Easy", "Standard", "Hard", "Insane", "Perfect" };
 
 	string word = pickStr();
 	string wordGuessed = word;
+	int difficulty;
 	int lives;
 };
 
 int main()
 {
+	;
 	hangman game;
-	game.clearWordGuessed();
-	game.printWordGuessed();
+	//game.clearWordGuessed();
+	//game.printWordGuessed();
+	game.choseDif();
 }

@@ -1,10 +1,10 @@
-	<p>
+<p>
   <a href=" rel="noopener">
   <img src="Images/logo100Copy1.png" alt="Logo" width="900" height = "430">
   </a>
-	</p>
+</p>
 
-	<p align = "center">
+<p align = "center">
    <img src = "https://img.shields.io/github/languages/count/SPGeorgieva21/Error-Makres?style=flat">
    <img src = "https://img.shields.io/github/repo-size/SPGeorgieva21/Error-Makers?style=flat">
    <img src = "https://img.shields.io/github/stars/ SPGeorgieva21/Error-Makers?style=social">

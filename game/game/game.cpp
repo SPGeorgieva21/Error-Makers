@@ -67,14 +67,16 @@ struct hangman {
 	void restart(bool first) {
 		if (first == true) {
 			typePrint("Do you want to restart the game? (Y/N)", 1);
+			cout << '\n';
 		}
 		char input;
 		cin >> input;
 		if (input != 'Y' && input != 'N') {
-			typePrint("Please use a valid input (Y/N):", 1);
+			typePrint("Please use a valid input (Y/N): ", 1);
 			restart(false);
 		}
 		if (input == 'Y') {
+			system("CLS");
 			startGame();
 		}
 		if (input == 'N') {
@@ -108,7 +110,7 @@ struct hangman {
 
 	void newTurn() {
 		char str = choseLetter(true);
-
+		system("CLS");
 		bool flag = false;
 		for (size_t i = 0; i < wordGuessed.length(); i++) {
 			if (str == word[i]) {
@@ -125,12 +127,14 @@ struct hangman {
 		if (flag == false) {
 			lives--;
 			if (lives > 0) {
-				typePrint("You guessed incorrectly! Lives remaining: " + to_string(lives), 1);
+				typePrint("You guessed incorrectly!", 1);
 				cout << '\n';
 				startGuessing();
 			}
 			else {
 				typePrint("You guessed incorrectly and lost the game!", 1);
+				cout << '\n';
+				typePrint("The word was '" + word + "'", 1);
 				cout << '\n';
 				restart(true);
 			}
@@ -140,6 +144,7 @@ struct hangman {
 
 
 	void startGame() {
+		lettersGuessed.clear();
 		clearWordGuessed();
 		typePrint("Please chose one of the following difficulties:", 1);
 		Sleep(300);

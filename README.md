@@ -37,7 +37,7 @@
 - [Стела Георгиева](https://github.com/SPGeorgieva21) - Scrum Trainer 
 - [Александра Желева](https://github.com/AMZheleva21) - Front-End Developer
 - [Алекс Казаков](https://github.com/AZKazakov21) - Back-End Developer
-- [Мирослав Ганев](https://github.com/MIGanev) - QA Engineer
+- [Мирослав Ганев](https://github.com/MIGanev21) - QA Engineer
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
 + [Presentation](https://github.com/SPGeorgieva21/Error-Makers/Amigos/blob/main/Documents/Presentation.pptx)

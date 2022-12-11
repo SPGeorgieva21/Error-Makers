@@ -56,8 +56,7 @@ struct hangman {
 		}
 	}
 
-	void choseDif() {
-		int temp;
+	void startGame() {
 		typePrint("Please chose one of the following difficulties:", 1);
 		Sleep(300);
 		cout << '\n';
@@ -69,12 +68,24 @@ struct hangman {
 			cout << difName[i] << " (" << i+1 << "): " << dif[i] << " lives" << '\n';
 		}
 		Sleep(500);
-		typePrint("Which difficulty do you chose? (1-" + to_string(dif.size() + 1) + "): ", 1);
-		cin >> temp;
-		difficulty = temp;
-		lives = dif[temp];
-		for (size_t i = 0; i < dif.size(); i++) {
+		choseDif(true);
+	}
 
+	void choseDif(bool first) {
+		if (first == true) {
+			typePrint("Which difficulty do you chose? (1-" + to_string(dif.size()) + "): ", 1);
+		}
+		int temp;
+		cin >> temp;
+		if (temp > 0 && temp <= dif.size()) {
+			difficulty = temp;
+			lives = dif[temp];
+			typePrint("You have chosen [" + difName[difficulty] + " Difficulty] with " + to_string(lives) + " lives." + '\n' + "Game will now commence.", 2);
+			Sleep(2000);
+		}
+		else {
+			typePrint("Please chose a valid difficulty (1-" + to_string(dif.size()) + "): ", 1);
+			choseDif(false);
 		}
 	}
 
@@ -97,5 +108,5 @@ int main()
 	hangman game;
 	//game.clearWordGuessed();
 	//game.printWordGuessed();
-	game.choseDif();
+	game.startGame();
 }

@@ -30,6 +30,13 @@ struct hangman {
 		}
 	}
 
+		void typePrint(string str, float time /*SECONDS*/) {
+		for (size_t i = 0; i < str.size(); i++) {
+			cout << str[i];
+			Sleep((time * 1000) / str.size());
+		}
+	}
+
 	void printWordGuessed() {
 		for (size_t i = 0; i < wordGuessed.length(); i++) {
 			cout << wordGuessed[i];
@@ -46,7 +53,7 @@ struct hangman {
 		for (size_t i = 0; i < lettersGuessed.size(); i++) {
 			if (input == lettersGuessed[i]) flag = true;
 		}
-		if (flag == true){
+		if (flag == true) {
 			typePrint("Please chose a letter you haven't chosen before: ", 1);
 			choseLetter(false);
 			return 0;
@@ -57,40 +64,80 @@ struct hangman {
 		}
 	}
 
+	void restart(bool first) {
+		if (first == true) {
+			typePrint("Do you want to restart the game? (Y/N)", 1);
+		}
+		char input;
+		cin >> input;
+		if (input != 'Y' && input != 'N') {
+			typePrint("Please use a valid input (Y/N):", 1);
+			restart(false);
+		}
+		if (input == 'Y') {
+			startGame();
+		}
+		if (input == 'N') {
+			exit(0);
+		}
+	}
+
 	void startGuessing() {
-		cout << wordGuessed << '\n' << '\n';
-		cout << "Lives Remaining: " << lives << '\n';
-		if (lettersGuessed.size() != 0) {
-			cout << "Letters Guessed: ";
-			for (size_t i = 0; i < lettersGuessed.size(); i++) {
-				cout << lettersGuessed[i] << " ";
-			}
+		if (wordGuessed == word) {
+			system("CLS");
+			cout << "You won!" << '\n' << "The word was '" << word << "'!" << '\n' << "Lives Remaining: " << lives;
 			cout << '\n';
+			restart(true);
 		}
+		else {
+			cout << wordGuessed << '\n' << '\n';
+			cout << "Lives Remaining: " << lives << '\n';
+			if (lettersGuessed.size() != 0) {
+				cout << "Letters Guessed: ";
+				for (size_t i = 0; i < lettersGuessed.size(); i++) {
+					cout << lettersGuessed[i] << " ";
+				}
+				cout << '\n';
+			}
+			Sleep(500);
+			newTurn();
 
-		Sleep(500);
-
-		//char str = choseLetter(true);
-
-
-		//bool flag = false;
-		//for (size_t i = 0; i < wordGuessed.length(); i++) {
-		//	if (str == word[i]) {
-		//		wordGuessed[i] = word[i];
-		//		flag = true;
-		//	}
-		//}
-		//if (flag == false) {
-
-		//}
-	}
-
-	void typePrint(string str, float time /*SECONDS*/) {
-		for (size_t i = 0; i < str.size(); i++) {
-			cout << str[i];
-			Sleep((time * 1000) / str.size());
 		}
 	}
+
+
+	void newTurn() {
+		char str = choseLetter(true);
+
+		bool flag = false;
+		for (size_t i = 0; i < wordGuessed.length(); i++) {
+			if (str == word[i]) {
+				wordGuessed[i] = word[i];
+				flag = true;
+			}
+		}
+		if (flag == true) {
+			typePrint("You guessed correctly!", 0.5);
+			cout << '\n';
+			Sleep(500);
+			startGuessing();
+		}
+		if (flag == false) {
+			lives--;
+			if (lives > 0) {
+				typePrint("You guessed incorrectly! Lives remaining: " + to_string(lives), 1);
+				cout << '\n';
+				startGuessing();
+			}
+			else {
+				typePrint("You guessed incorrectly and lost the game!", 1);
+				cout << '\n';
+				restart(true);
+			}
+		}
+	}
+
+
 
 	void startGame() {
 		clearWordGuessed();
@@ -102,12 +149,12 @@ struct hangman {
 			//for (int j = 0; j < dif[i]; j++) {
 			//	livesHearts += "";
 			//}
-			cout << difName[i] << " (" << i+1 << "): " << dif[i] << " lives" << '\n';
+			cout << difName[i] << " (" << i + 1 << "): " << dif[i] << " lives" << '\n';
 		}
 		Sleep(500);
 		choseDif(true);
 		startGuessing();
-		
+
 	}
 
 	void choseDif(bool first) {
@@ -118,8 +165,8 @@ struct hangman {
 		cin >> temp;
 		if (temp > 0 && temp <= dif.size()) {
 			difficulty = temp;
-			lives = dif[temp];
-			typePrint("You have chosen [" + difName[difficulty] + " Difficulty] with " + to_string(lives) + " lives." + '\n' + "Game will now commence.", 2);
+			lives = dif[temp - 1];
+			typePrint("You have chosen [" + difName[difficulty - 1] + " Difficulty] with " + to_string(lives) + " lives." + '\n' + "Game will now commence.", 2);
 			Sleep(2000);
 			system("CLS");
 		}
@@ -135,7 +182,7 @@ private:
 	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
 	vector<int> dif = /*NUMBER OF DIFFICULTIES AND LIVES PER DIFFICULTY*/{ 9,7,5,3,1 };
 	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/{ "Easy", "Standard", "Hard", "Insane", "Perfect" };
-	vector<char> lettersGuessed = {'t'};
+	vector<char> lettersGuessed;
 
 	string word = pickStr();
 	string wordGuessed = word;

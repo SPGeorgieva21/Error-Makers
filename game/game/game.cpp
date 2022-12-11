@@ -11,13 +11,17 @@
 
 using namespace std;
 
-
 struct hangman {
+
+	/*PICKS RANDOM WORD FROM WORDLIST*/
+
 	string pickStr() {
 		srand(time(0));
 		int temp = rand() % wordlist.size();
 		return wordlist[temp];
 	}
+
+	/*RESET THE WORD / MAKE IT BLANK*/
 
 	void clearWordGuessed() {
 		for (size_t i = 0; i < wordGuessed.length(); i++) {
@@ -30,6 +34,8 @@ struct hangman {
 		}
 	}
 
+	/*OUTPUTS LETTERS OF A STRING WITH EQUAL INTERVALS OF TIME BETWEEN EVERY LETTER*/
+
 		void typePrint(string str, float time /*SECONDS*/) {
 		for (size_t i = 0; i < str.size(); i++) {
 			cout << str[i];
@@ -37,13 +43,17 @@ struct hangman {
 		}
 	}
 
+	/*	FUNCTION USED FOR DEBUGGING*/
+
 	void printWordGuessed() {
 		for (size_t i = 0; i < wordGuessed.length(); i++) {
 			cout << wordGuessed[i];
 		}
 	}
 
-	char choseLetter(bool first) {
+	/*FUNCTION USED TO INPUT LETTERS*/
+
+	char choseLetter(bool first /*BOOL FOR RECURSION*/) {
 		if (first == true) {
 			typePrint("Guess a letter: ", 0.5);
 		}
@@ -64,7 +74,9 @@ struct hangman {
 		}
 	}
 
-	void restart(bool first) {
+	/*FUNCTION ASKS PLAYER IF THEY WANT TO RESTART/PLAY AGAIN*/
+
+	void restart(bool first /*BOOL FOR RECURSION*/) {
 		if (first == true) {
 			typePrint("Do you want to restart the game? (Y/N)", 1);
 			cout << '\n';
@@ -83,6 +95,8 @@ struct hangman {
 			exit(0);
 		}
 	}
+
+	/*FUNCTION STARTS THE GUESSING PROCESS*/
 
 	void startGuessing() {
 		if (wordGuessed == word) {
@@ -107,11 +121,12 @@ struct hangman {
 		}
 	}
 
+	/*FUNCTION STARTS A NEW TURN FOR THE PLAYER TO GUESS*/
 
 	void newTurn() {
 		char str = choseLetter(true);
 		system("CLS");
-		bool flag = false;
+		bool flag = false; /*BOOLEAN FOR WHETHER OR NOT LETTER IS FOUND IN WORD*/
 		for (size_t i = 0; i < wordGuessed.length(); i++) {
 			if (str == word[i]) {
 				wordGuessed[i] = word[i];
@@ -141,10 +156,10 @@ struct hangman {
 		}
 	}
 
-
+	/*FUNCTION STARTS THE GAME*/
 
 	void startGame() {
-		lettersGuessed.clear();
+		lettersGuessed.clear(); /*CLEARS ANY LETTERS FROM PREVIOUS PLAYTHROUGHS*/
 		clearWordGuessed();
 		typePrint("Please chose one of the following difficulties:", 1);
 		Sleep(300);
@@ -162,8 +177,10 @@ struct hangman {
 
 	}
 
-	void choseDif(bool first) {
-		if (first == true) {
+	/*CHOSE DIFFICULTY*/
+
+	void choseDif(bool first /*BOOL FOR RECURSION*/) {
+		if (first == true) { 
 			typePrint("Which difficulty do you chose? (1-" + to_string(dif.size()) + "): ", 1);
 		}
 		int temp;
@@ -184,22 +201,19 @@ struct hangman {
 	string* wordPtr = &word;
 
 private:
-	vector<string> wordlist = { "test1", "test12", "test123", "test1234", "test12345" };
+	vector<string> wordlist = /*ADD WORDS HERE*/ { "test1", "test12", "test123", "test1234", "test12345" };
 	vector<int> dif = /*NUMBER OF DIFFICULTIES AND LIVES PER DIFFICULTY*/{ 9,7,5,3,1 };
 	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/{ "Easy", "Standard", "Hard", "Insane", "Perfect" };
-	vector<char> lettersGuessed;
+	vector<char> lettersGuessed; /*DONT ADD ANYTHING HERE*/
 
 	string word = pickStr();
-	string wordGuessed = word;
-	int difficulty;
+	string wordGuessed = word; 
+	int difficulty; /*DIFFICULTY REPRESENTED BY INDEX*/
 	int lives;
 };
 
 int main()
 {
-	;
-	hangman game;
-	//game.clearWordGuessed();
-	//game.printWordGuessed();
-	game.startGame();
+	hangman game; /*CREATING OBJECT OF STRUCTURE HANGMAN*/
+	game.startGame(); /*CALLING FUNCTION FROM OBJECT GAME*/
 }

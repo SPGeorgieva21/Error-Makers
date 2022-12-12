@@ -1,6 +1,6 @@
 <p>
   <a href=" rel="noopener">
-  <img src="Images/logo100Copy1.png" alt="Logo" width="900" height = "430">
+  <img src="Images/Logo.png" alt="Logo">
   </a>
 </p>
 
@@ -19,7 +19,7 @@
 	
 ## :book: Description <a name="description"></a>
 <br>
- The main goal of our project is t game of C++
+ The main goal of our project is game of C++
 <br>
 <br>
 
@@ -40,6 +40,6 @@
 - [Мирослав Ганев](https://github.com/MIGanev21) - QA Engineer
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
-+ [Presentation](https://github.com/SPGeorgieva21/Error-Makers/Amigos/blob/main/Documents/Presentation.pptx)
++ [Presentation](https://github.com/SPGeorgieva21/Error-Makers/blob/main/Documents/Presentation.pptx)
 + [Documentation](https://github.com/SPGeorgieva21/Error-Makers/blob/main/Documents/Documentation.docx)
 + [QA Documentation](https://github.com/SPGeorgieva21/Error-Makers/blob/main/Documents/QA%20Documentation.xlsx)

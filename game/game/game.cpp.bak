@@ -201,14 +201,7 @@ struct hangman {
 	string* wordPtr = &word;
 
 private:
-	vector<string> wordlist = /*ADD WORDS HERE*/{ "apple", "juice", "banana", "bottle", "ring",
-                          "table", "chair", "hair", "fox", "person", "animal",
-                          "desk", "teacher", "school", "rubber", "ruler","word",
-                          "wallet","purse","book","forest","beach","water",
-                          "paper","orange","peach","berry","blue","cherry",
-                          "game","programmer","zebra","yellow","purple","black","kitchen",
-                          "rule","house","grass","cloud","computer","mobile","team",
-                          "project","biology","titan","physics","milk","history","leaf" };
+	vector<string> wordlist = /*ADD WORDS HERE*/ { "test1", "test12", "test123", "test1234", "test12345" };
 	vector<int> dif = /*NUMBER OF DIFFICULTIES AND LIVES PER DIFFICULTY*/{ 9,7,5,3,1 };
 	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/{ "Easy", "Standard", "Hard", "Insane", "Perfect" };
 	vector<char> lettersGuessed; /*DONT ADD ANYTHING HERE*/

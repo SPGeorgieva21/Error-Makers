@@ -159,6 +159,8 @@ struct hangman {
 	/*FUNCTION STARTS THE GAME*/
 
 	void startGame() {
+		word = pickStr();
+		wordGuessed = word;
 		lettersGuessed.clear(); /*CLEARS ANY LETTERS FROM PREVIOUS PLAYTHROUGHS*/
 		clearWordGuessed();
 		typePrint("Please chose one of the following difficulties:", 1);
@@ -213,8 +215,8 @@ private:
 	vector<string> difName = /*INDEX OF NAME CORESPONDS TO INDEX OF LIVES PER DIFFICULTY*/{ "Easy", "Standard", "Hard", "Insane", "Perfect" };
 	vector<char> lettersGuessed; /*DONT ADD ANYTHING HERE*/
 
-	string word = pickStr();
-	string wordGuessed = word; 
+	string word;
+	string wordGuessed; 
 	int difficulty; /*DIFFICULTY REPRESENTED BY INDEX*/
 	int lives;
 };
